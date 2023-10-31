@@ -7,7 +7,7 @@ import setupApiClient from '@/services/api';
 
 export const AuthContext = createContext();
 
-export function signOut() {
+export async function signOut() {
   try {
     destroyCookie(undefined, '@auth.userId');
     Router.push('/');

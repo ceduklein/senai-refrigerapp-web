@@ -29,37 +29,24 @@ export function NavBar() {
   return (
     <Navbar className="navbar navbar-expand-lg" expand="lg" style={{backgroundColor: '#F0F4F7'}}>
       <Container fluid className="container-fluid">
-        <Navbar.Brand href="/">RefrigerApp</Navbar.Brand>
+        <Navbar.Brand href="/" style={{marginTop:'-3px', fontWeight: 'bold'}}>RefrigerApp</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar" />
         <Navbar.Collapse id="navbar">
-          <Nav>
-            <NavDropdown id="nav-dropdown-dark-example" title="Clientes">
-              <Nav.Link href="#action/3.1">Cadastrar</Nav.Link>
-              <Nav.Link href="/clientes">Listar</Nav.Link>
-            </NavDropdown>
-
-            <NavDropdown id="nav-dropdown-dark-example" title="Produtos">
-              <Nav.Link href="#action/3.1">Cadastrar</Nav.Link>
-              <Nav.Link href="#action/3.1">Listar</Nav.Link>
-            </NavDropdown>
+          <Nav style={{fontSize: '1.1rem'}}>
+            <Nav.Link href="/clientes">Clientes</Nav.Link>
+            <Nav.Link href="/clientes">Produtos</Nav.Link>
 
             <NavDropdown id="nav-dropdown-dark-example" title="Pedidos">
               <Nav.Link href="#action/3.1">Cadastrar</Nav.Link>
               <Nav.Link href="#action/3.1">Listar</Nav.Link>
             </NavDropdown>
-
-            {admin ? (
-              <NavDropdown id="nav-dropdown-dark-example" title="Usuários">
-                <Nav.Link href="#action/3.1">Cadastrar</Nav.Link>
-                <Nav.Link href="#action/3.1">Listar</Nav.Link>
-              </NavDropdown>
+            { admin ? (
+              <Nav.Link href="/usuarios">Usuários</Nav.Link>
             ): (
               <></>
-            )}
-
+            ) }
             <NavDropdown id="nav-dropdown-dark-example" title={name}>
-              <Nav.Link href="#action/3.1">Minha Conta</Nav.Link>
-              <Nav.Link href="#action/3.1">Trocar Senha</Nav.Link>
+              <Nav.Link href="/usuarios-detalhes">Minha Conta</Nav.Link>
               <Nav.Link href="" onClick={handleSignout}>
                 <FiLogOut size={18} style={{marginRight:'10px', marginBottom:'2px'}}/>Sair
               </Nav.Link>
