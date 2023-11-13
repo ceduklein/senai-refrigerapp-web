@@ -2,7 +2,7 @@ import { Column } from "primereact/column";
 import { BiSolidUserDetail } from 'react-icons/bi';
 import { FiTrash2 } from 'react-icons/fi';
 
-import styles from './customerTable.module.scss';
+import styles from './pageTable.module.scss';
 
 import { Table } from "@/components/Table";
 

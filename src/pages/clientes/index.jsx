@@ -7,13 +7,12 @@ import styles from './index.module.scss';
 
 import { Card } from "@/components/Card";
 import { NavBar } from "@/components/NavBar";
-import { CustomerTable } from './components/customerTable';
+import { CustomerTable } from '@/components/Table/pageTable/customerTable';
 import { Modal } from '@/components/Modal';
-import { CustomerDialog } from './components/customerDialog';
+import { CustomerDialog } from '@/components/Dialog/customerDialog';
 
 import { canSSRAuth } from '@/utils/canSSRAuth';
-import setupApiClient from '@/services/api';
-import { deleteCustomer, refreshCustomersList } from './service';
+import { deleteCustomer, getCustomers } from '@/services/resources/customerResource';
 
 export default function Clientes({ customers }) {
   const [customersList, setCustomersList] = useState(customers)
@@ -22,7 +21,7 @@ export default function Clientes({ customers }) {
   const [showCustomerDialog, setShowCustomerDialog] = useState(false);
   const [showCreateCustomerDialog, setShowCreateCustomerDialog] = useState(false);
 
-  const refreshTable = async() => setCustomersList(await refreshCustomersList());
+  const refreshTable = async() => setCustomersList(await getCustomers());
 
   const handleCloseDelModal = () => setShowDelModal(false);
   const handleCloseCustomerDialog = () => setShowCustomerDialog(false);
@@ -94,7 +93,6 @@ export default function Clientes({ customers }) {
 }
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
-  const api = setupApiClient(ctx);
-  const response = await api.get(`/customers`);
-  return { props: { customers: response.data } }
+  const customers = await getCustomers();
+  return { props: { customers } }
 });

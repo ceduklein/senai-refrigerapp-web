@@ -9,11 +9,10 @@ import { NavBar } from "@/components/NavBar";
 import { Card } from "@/components/Card";
 import { Input } from "@/components/Input";
 import { CheckBox } from "@/components/CheckBox";
-import { PasswordDialog } from "./components/passwordDialog";
+import { PasswordDialog } from "@/components/Dialog/passwordDialog";
 
 import { canSSRAuth } from "@/utils/canSSRAuth";
-import setupApiClient from "@/services/api";
-import { updateUser } from "./service";
+import { getUserById, updateUser } from "@/services/resources/userResource";
 
 export default function DetalhesUsuario({ user }) {
   const [id, setId] = useState(user.id);
@@ -59,7 +58,6 @@ export default function DetalhesUsuario({ user }) {
               value={name} onChange={e => setName(e.target.value)} />
             </div>
           </div>
-
           <div className="row">
             <div className="col-md-5">
               <Input label='CPF' htmlFor='cpf' type='text' value={cpf} disabled />
@@ -73,7 +71,6 @@ export default function DetalhesUsuario({ user }) {
               text={ admin ? `Administrador` : `Vendedor` } />
             </div>
           </div>
-
           <div style={{marginTop: '5px'}}>
             <button className="btn btn-secondary" onClick={handleGoBack} 
               style={{fontSize: '1.15rem', width: '30%'}}>
@@ -90,7 +87,6 @@ export default function DetalhesUsuario({ user }) {
             </button>
           </div>
         </Card>
-
         <PasswordDialog showDialog={showDialog} closeDialog={handleCloseDialog}
           onConfirm={handleCloseDialog} userId={id} />
       </div>
@@ -99,8 +95,7 @@ export default function DetalhesUsuario({ user }) {
 }
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
-  const api = setupApiClient(ctx);
   const { '@auth.userId': id } = parseCookies(ctx);
-  const response = await api.get(`/users/${id}`);
-  return { props: { user: response.data } }
+  const user = await getUserById(id);
+  return { props: { user } }
 });

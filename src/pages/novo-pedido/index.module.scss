@@ -1,4 +1,4 @@
-.containerUser {
+.containerNewOrder {
   margin-top: 50px;
 }
 
@@ -15,5 +15,14 @@
 
 .headerButtons {
   width: 20%;
-  font-size: 1.1rem;
+  font-size: 1rem;
+}
+
+.formButtons {
+  margin: -10px 0 15px 0;
+  
+  button {
+    font-size: 1rem;
+    width: 30%;
+  }
 }

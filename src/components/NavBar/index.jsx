@@ -34,12 +34,12 @@ export function NavBar() {
         <Navbar.Collapse id="navbar">
           <Nav style={{fontSize: '1.1rem'}}>
             <Nav.Link href="/clientes">Clientes</Nav.Link>
-            <Nav.Link href="/clientes">Produtos</Nav.Link>
-
+            <Nav.Link href="/produtos">Produtos</Nav.Link>
             <NavDropdown id="nav-dropdown-dark-example" title="Pedidos">
-              <Nav.Link href="#action/3.1">Cadastrar</Nav.Link>
-              <Nav.Link href="#action/3.1">Listar</Nav.Link>
-            </NavDropdown>
+              <Nav.Link href="/pedidos">Listar</Nav.Link>
+              <Nav.Link href="/novo-pedido">Novo Pedido</Nav.Link>
+            </NavDropdown> 
+
             { admin ? (
               <Nav.Link href="/usuarios">Usuários</Nav.Link>
             ): (

@@ -5,7 +5,7 @@ import { FiXCircle, FiSave } from 'react-icons/fi';
 
 import { Input } from '@/components/Input';
 
-import { createUser } from '../service';
+import { createUser } from '@/services/resources/userResource';
 
 export function UserDialog(props) {
   const { showDialog, closeDialog, user, onConfirm} = props;

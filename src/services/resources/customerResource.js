@@ -34,7 +34,7 @@ export const deleteCustomer = async(id) => {
   }
 }
 
-export const refreshCustomersList = async() => {
+export const getCustomers = async() => {
   try {
     const response =  await api.get('/customers');
     return response.data;

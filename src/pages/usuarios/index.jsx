@@ -8,16 +8,14 @@ import styles from './index.module.scss';
 
 import { NavBar } from '@/components/NavBar';
 import { Card } from '@/components/Card';
-import { UserTable } from './components/userTable';
+import { UserTable } from '@/components/Table/pageTable/userTable';
 import { Modal } from '@/components/Modal';
-import { UserDialog } from './components/userDialog';
+import { UserDialog } from '@/components/Dialog/userDialog';
 
 import { canSSRAuth } from '@/utils/canSSRAuth';
-import setupApiClient from '@/services/api';
-import { deleteUser, refreshUsersList, setCredential } from './service';
+import { deleteUser, getUsers, setCredential } from '@/services/resources/userResource';
 
 export default function Usuarios({ users, admin_id }) {
-
   const [usersList, setUsersList] = useState(users);
   const [selectedUser, setSelectedUser] = useState({});
   const [showDelModal, setShowDelModal] = useState(false);
@@ -25,7 +23,7 @@ export default function Usuarios({ users, admin_id }) {
   const [showCreateDialog, setShowCreateDialog] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
-  const refreshTable = async() => setUsersList(await refreshUsersList(admin_id));
+  const refreshTable = async() => setUsersList(await getUsers(admin_id));
 
   const handleCloseDelModal = () => setShowDelModal(false);
   const handleCloseModal = () => setShowModal(false);
@@ -62,7 +60,7 @@ export default function Usuarios({ users, admin_id }) {
   const handleDelete = async() => {
     await deleteUser(selectedUser.id);
     setShowDelModal(false);
-    refreshTable();
+    await refreshTable();
   }
 
   const elementsDelModal = () => {
@@ -98,7 +96,6 @@ export default function Usuarios({ users, admin_id }) {
             <UserTable data={usersList} onClickDelete={handleShowDelModal}
               onClickChange={handleShowModal} onClickShow={handleShowDialog} />
           </Card>
-
           <Modal title="Exlcuir Cadastro" showDialog={showDelModal}
             closeDialog={handleCloseDelModal} showChildren={true} onConfirm={handleDelete} 
             confirmButtonText="Sim" closeButtonText='Não'>
@@ -109,10 +106,8 @@ export default function Usuarios({ users, admin_id }) {
             confirmButtonText="Sim" closeButtonText='Não'>
               { elementsModal() }
           </Modal>
-
           <UserDialog closeDialog={handleCloseCreateDialog} 
             showDialog={showCreateDialog} onConfirm={handleClickOnConfirm} />
-          
           <UserDialog closeDialog={handleCloseDialog} user={selectedUser}
             showDialog={showDialog} />
         </div>
@@ -122,8 +117,7 @@ export default function Usuarios({ users, admin_id }) {
 }
 
 export const getServerSideProps = canSSRAuth(async (ctx) => {
-  const api = setupApiClient(ctx);
   const { '@auth.userId': id } = parseCookies(ctx);
-  const response = await api.get(`/users`, { params: { admin_id: id } });
-  return { props: { users: response.data, admin_id: id } }
+  const users = await getUsers(id);
+  return { props: { users, admin_id: id } }
 });

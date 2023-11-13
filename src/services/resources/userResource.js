@@ -14,7 +14,37 @@ export const createUser = async(data) => {
   }
 }
 
+export const getUserById = async(id) => {
+  try {
+    const response =  await api.get(`/users/${id}`);
+    return response.data;
+  } catch(err) {
+    console.log('Erro: ', err);
+  }
+}
+
+export const changePassword = async(id, data) => {
+  try {
+    await api.patch(`/users/change-password/${id}`, data);
+    toast.success('Senha Alterada.');
+  } catch(err) {
+    toast.error('Erro ao alterar senha.');
+    console.log('Erro: ', err);
+  }
+}
+
+export const updateUser = async(id, data) => {
+  try {
+    await api.put(`/users/${id}`, data);
+    toast.success('Cadastro atualizado.');
+  } catch(err) {
+    toast.error('Erro ao atualizar cadastro.');
+    console.log('Erro: ', err);
+  }
+}
+
 export const deleteUser = async(id) => {
+  console.log(id);
   try {
     await api.delete(`/users/${id}`);
     toast.success('Cadastro excluído.');
@@ -34,7 +64,7 @@ export const setCredential = async(id, admin_id) => {
   }
 }
 
-export const refreshUsersList = async(admin_id) => {
+export const getUsers = async(admin_id) => {
   try {
     const response =  await api.get('/users', { params: { admin_id } });
     return response.data;

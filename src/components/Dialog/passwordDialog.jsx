@@ -5,7 +5,7 @@ import { RiLockPasswordLine } from 'react-icons/ri';
 
 import { Input } from "@/components/Input";
 
-import { changePassword } from "../service";
+import { changePassword } from "@/services/resources/userResource";
 
 export function PasswordDialog(props) {
   const { showDialog, closeDialog, onConfirm, userId } = props;

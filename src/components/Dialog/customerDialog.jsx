@@ -5,7 +5,7 @@ import { FiXCircle, FiSave } from 'react-icons/fi';
 
 import { Input } from '@/components/Input';
 
-import { createCustomer, updateCustomer } from '../service'
+import { createCustomer, updateCustomer } from '@/services/resources/customerResource';
         
 export function CustomerDialog(props) {
   const { showDialog, closeDialog, user, onConfirm } = props;

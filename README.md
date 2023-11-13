@@ -1,40 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# REFRIGERAPP - FrontEnd (React/NextJS)
 
-## Getting Started
+Projeto Aplicado IIII - 5ª Fase de Análise e Desenvolvimento de Sistemas SENAI
 
-First, run the development server:
+## Gerenciamento de produtos no catálogo de empresa de refrigeração
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Descrição Resumida
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Desenvolver um sistema para que uma empresa revendedora de eletrodomésticos de refrigeração cadastre e gerencie os produtos disponíveis para venda.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Benefícios Esperados
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Com esse projeto, busca-se otimizar o controle das marcas e produtos revendidos pela empresa, facilitando assim o controle de revendas e de estoque.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Detalhamento
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Uma empresa de revenda de eletrodomésticos de refrigeração, especializada em geladeiras e freezers, está tendo dificuldades para gerenciar os produtos que estão ativos/inativos para venda, o que gera situações desconfortáveis, como oferta de produtos não mais disponíveis. Para sanar essa dificuldade, a empresa deseja que seja produzido um software web que permita o cadastro das marcas e produtos disponíveis para venda, que possa ser consultado por seus vendedores no momento de um pedido. Relatórios são bem vindos, bem como segurança de acesso através da autenticação dos funcionários.
 
-## Learn More
+## API
+A api para rodar em conjunto com este projeto está disponível no repositório abaixo:
 
-To learn more about Next.js, take a look at the following resources:
+[Fã Clube api](https://github.com/ceduklein/refrigerapp_api)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Preparação do ambiente
+* Api instalada e configurada (você encontra o repositório da api no link acima)
+* Gerenciador de pacotes Yarn
+* Após clonar o repositório, executar o comando `yarn` para instalar as dependências necessárias.
+* Executar `yarn dev` para rodar o projeto em ambiente local.

@@ -5,9 +5,16 @@ export function Input(props) {
 
   return (
     <Form.Group className='mb-3' controlId={ htmlFor} >
-      <Form.Label>{ label }</Form.Label>
-      <Form.Control type={ type } placeholder={ placeholder } disabled={ disabled }
-        value={ value } onChange={ onChange } />
+      { label ? (
+          <>
+            <Form.Label>{ label }</Form.Label>
+            <Form.Control type={ type } placeholder={ placeholder } disabled={ disabled }
+              value={ value } onChange={ onChange } />
+          </>
+      ) : (
+          <Form.Control type={ type } placeholder={ placeholder } disabled={ disabled }
+            value={ value } onChange={ onChange } />
+      ) }
     </Form.Group>
   )
 }

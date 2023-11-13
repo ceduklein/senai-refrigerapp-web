@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 import { MdAdminPanelSettings } from 'react-icons/md';
 import { GoShieldCheck, GoShieldX } from 'react-icons/go';
 
-import styles from './userTable.module.scss';
+import styles from './pageTable.module.scss';
 
 import { Table } from "@/components/Table";
 
