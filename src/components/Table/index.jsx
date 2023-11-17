@@ -2,8 +2,7 @@ import { useState } from "react";
 import { DataTable } from 'primereact/datatable';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode } from 'primereact/api';
-import { FaSearch, FaUserPlus } from 'react-icons/fa';
-import { Button } from "primereact/button";
+import { FaSearch } from 'react-icons/fa';
 
 export function Table(props) {
   const [globalFilterValue, setGlobalFilterValue] = useState('');

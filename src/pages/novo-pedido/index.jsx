@@ -63,7 +63,7 @@ export default function NovoPedido({ user, customers, products }) {
   }
 
   const handleSaveItem = async(event) => {
-    if (productId === '' || quantity === ''){
+    if (productId === '' || quantity === '' || quantity == '0'){
       toast.warning('Selecione o produto e preencha a quantidade');
       return;
     }

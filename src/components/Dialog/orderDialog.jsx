@@ -1,11 +1,21 @@
+import { useEffect, useState } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dialog } from "primereact/dialog";
 import { HiOutlineClipboardList } from 'react-icons/hi';
 import { FiTrash2, FiXCircle } from "react-icons/fi";
+import { deleteOrderItem, getOrderItemsByOrder } from "@/services/resources/orderResource";
+
 
 export function OrderDialog(props) {
   const { showDialog, closeDialog, data, order, user } = props;
+  const [itemsList, setItemsList] = useState(data);
+
+  useEffect(() => {
+    if(data) {
+      setItemsList(data);
+    }
+  },[data]);
 
   const formatCurrency = (rowData) => {
     return rowData.totalItem.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
@@ -37,7 +47,7 @@ export function OrderDialog(props) {
     )
   }
 
-  const actionButtons = () => {
+  const actionButtons = (rowData) => {
     return(
       <button type='button' className="btn btn-danger" disabled={!user.admin}
         style={{marginTop: '-5px', padding: '5px'}}
@@ -47,10 +57,15 @@ export function OrderDialog(props) {
     )
   }
 
+  const onClickDelete = async(rowData) => {
+    await deleteOrderItem(rowData.id);
+    setItemsList(await getOrderItemsByOrder(order.id));
+  }
+
   return(
     <Dialog header={ dialogHeader } visible={ showDialog } style={{ width: '40vw' }} 
-    onHide={ closeDialog } footer={ dialogFooter } >
-      <DataTable value={ data }>
+    onHide={ closeDialog } footer={ dialogFooter }  >
+      <DataTable value={ itemsList }>
         <Column field="product.name" header="Produto" />
         <Column field="quantity" header="Quantitade" />
         <Column field="totalItem" body={ formatCurrency } header="Total Item" />

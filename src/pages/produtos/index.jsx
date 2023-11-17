@@ -113,7 +113,7 @@ export default function Produtos({ user, products }) {
             <ProductTable data={productsList} onClickEdit={handleShowProductDialog}
               onClickShow={handleClickShow} onClickDelete={handleShowDelModal}
               onClickChange={handleShowChangeModal} user={user} />
-            <ProductDialog showDialog={showCreateProductDialog} 
+            <ProductDialog showDialog={showCreateProductDialog} user={user}
               closeDialog={handleCloseCreateProductDialog} onConfirm={handleClickOnConfirm} />
             <ProductDialog showDialog={showProductDialog} product={selectedProduct} 
               closeDialog={handleCloseProductDialog} onConfirm={handleClickOnConfirm} user={user} />
